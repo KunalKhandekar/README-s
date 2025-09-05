@@ -122,4 +122,66 @@
         -> One Order can have many Payments (multiple attempts) → Only one successful payment can mark it as Paid.
         -> You cannot have a payment without an order (in most integrations).
 
-        
+## Payment Status in Razorpay
+
+    In Razorpay, every payment goes through a lifecycle and has different statuses to help you track whether the money has been successfully received, is in process, or failed. Here are the main payment statuses explained:
+
+    1. Created
+        -> This is the initial state when a payment is initiated but not yet attempted by the customer.
+        -> Example: When you create a payment/order via API but the customer hasn’t entered payment details yet.
+
+    2. Authorized
+        -> The payment has been approved by the customer’s bank/card issuer, but Razorpay has not yet captured the amount.
+        -> Money is blocked in the customer’s account but not yet received by you.
+        -> You (merchant) must capture the payment to receive funds (can be automatic or manual).
+
+    3. Captured
+        -> The payment is successfully captured, meaning the money is now debited from the customer and will be settled to your Razorpay account.
+        -> This is the final successful state for a payment.
+
+    4. Failed
+        -> The payment attempt was made, but it didn’t go through due to reasons like insufficient balance, incorrect card details, authentication failure, or network error.
+
+    5. Refunded
+        -> If you initiate a refund (full or partial), the payment status changes to Refunded once the money is successfully returned to the customer.
+
+## Razorpay API Guide
+
+    Check out the API Docs at: https://www.postman.com/razorpaydev/workspace/razorpay-public-workspace/collection/12492020-952c7295-118c-400f-8f2c-5266ef6f689a
+
+## Basic Auth
+
+    ⚡ Definition:
+        A simple HTTP authentication method where the client sends a username and password to the server.
+
+    ⚡ Process:
+        -> Client requests a protected resource.
+        -> Server responds with 401 Unauthorized and asks for credentials.
+        -> Client encodes username:password in Base64.
+        -> Adds it to the request header:
+            Authorization: Basic <Base64-credentials>
+        -> Server decodes and verifies.
+
+    ⚡ Security:
+        -> Base64 ≠ encryption, just encoding.
+        -> Vulnerable if used without HTTPS (credentials can be stolen).
+        -> Credentials are sent with every request.
+
+    ⚡ Use Cases:
+        -> Internal tools, simple APIs, testing, or temporary setups.
+        -> Always combined with HTTPS in real-world use.
+
+    ⚡ Limitations:
+        -> Weak compared to modern methods (Bearer tokens, JWT).
+        -> High risk if intercepted.
+
+    ⚡ Example:
+        const token = btoa('<API_KEY>:<API_SECRET>');
+
+        const res = await fetch("https://api.razorpay.com/v1/payments", {
+            headers: {
+                "Authorization": `Basic ${token}`
+            }
+        });
+
+        console.log(await res.json())
