@@ -1,0 +1,71 @@
+## Introduction to Serverless Computing
+
+1) What is Computing
+
+    - Computing means using a computer to do work.
+    - This work can be storing data, processing data, running programs, or solving problems.
+    - In simple words, whenever a computer takes input, processes it, and gives output, that is computing.
+
+    - Examples:
+        - Calculating numbers in a calculator
+        - Running a website
+        - Saving files in a database
+        - Playing a video
+
+2) What is Server-Based Computing
+
+    - Server-based computing means running applications and services on servers that you manage or control.
+    - Here, a server is always running and waiting for requests. You are responsible for setting it up, maintaining it, and keeping it secure.
+
+    - Examples:
+        - Hosting a website on your own VPS
+        - Running a backend on an EC2 or DigitalOcean server
+        - Managing databases on your own server
+
+    - Key points:
+        - Server is always on
+        - You manage setup, updates, and scaling
+        - You pay even if the server is idle
+
+3) What is Serverless Computing
+
+    - Serverless computing means running code without managing servers.
+    - The cloud provider automatically handles servers, scaling, and maintenance. Your code runs only when an event happens.
+
+    - Examples:
+        - API functions using AWS Lambda
+        - Image processing after upload
+
+    - Key points:
+        - No server management
+        - Automatic scaling
+        - Pay only when code runs
+
+## AWS Lambda Functions
+
+1) What is AWS Lambda
+
+    - AWS Lambda is a serverless computing service provided by Amazon Web Services.
+    - It lets you run small pieces of code called functions without creating or managing servers.
+    - You only write the code. AWS runs it for you.
+
+2) What is an AWS Lambda Function
+
+    - An AWS Lambda function is a block of code that runs when something triggers it.
+    - The function runs, does its work, and then stops.
+
+    - Examples of triggers:
+        - An HTTP request from an API
+        - A file uploaded to S3
+        - A database change
+        - A scheduled time
+
+3) How AWS Lambda Works
+
+    - You write your function code
+    - You upload it to AWS Lambda
+    - An event triggers the function
+    - AWS runs the code automatically
+    - After execution, it stops
+
+    Note: You do not manage servers at any step.
